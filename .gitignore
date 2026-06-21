@@ -17,6 +17,8 @@ node_modules/
 .next/
 npm-debug.log*
 
+# Prisma generated client
+backend/src/generated/prisma
 # Database
 *.sqlite3
 
