@@ -11,31 +11,160 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
 model Manufacturer {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   website   String?
   createdAt DateTime @default(now())
 
-  cpus      Cpu[]
+  cpus    Cpu[]
+  gpus    Gpu[]
+  systems System[]
 }
 
 model Cpu {
-  id                 Int          @id @default(autoincrement())
-  manufacturerId     Int
-  manufacturer       Manufacturer @relation(fields: [manufacturerId], references: [id])
+  id             Int          @id @default(autoincrement())
+  manufacturerId Int
+  manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
 
   name               String
-  cores              Int
-  threads            Int
   baseClockGhz       Float
   boostClockGhz      Float?
   passmarkScore      Int?
-  eccSupport         Boolean      @default(false)
-  integratedGraphics Boolean      @default(false)
-  architecture       String?
-  socket             String?
+  eccSupport         Boolean @default(false)
+  integratedGraphics Boolean @default(false)
   tdpWatts           Int?
 
-  createdAt          DateTime     @default(now())
+  createdAt  DateTime    @default(now())
+  systemCpus SystemCpu[]
+  cpuScore   CpuScore?
+}
+
+model Gpu {
+  id             Int          @id @default(autoincrement())
+  manufacturerId Int
+  manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
+
+  name          String
+  vramGb        Int
+  passmarkScore Int?
+  tdpWatts      Int?
+  isIntegrated  Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  scores     GpuScore?
+  systemGpus SystemGpu[]
+}
+
+model RamConfig {
+  id         Int     @id @default(autoincrement())
+  capacityGb Int
+  type       String
+  eccSupport Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  systemRam SystemRam[]
+}
+
+model StorageConfig {
+  id         Int    @id @default(autoincrement())
+  capacityGb Int
+  type       String
+
+  createdAt DateTime @default(now())
+
+  systemStorage SystemStorage[]
+}
+
+model System {
+  id             Int          @id @default(autoincrement())
+  manufacturerId Int
+  manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
+
+  name        String
+  category    String
+  priceUsd    Float
+  releaseYear Int?
+  url         String?
+  active      Boolean @default(true)
+
+  createdAt DateTime @default(now())
+
+  systemCpus    SystemCpu[]
+  systemGpus    SystemGpu[]
+  systemRam     SystemRam[]
+  systemStorage SystemStorage[]
+}
+
+model SystemCpu {
+  id       Int    @id @default(autoincrement())
+  systemId Int
+  cpuId    Int
+  system   System @relation(fields: [systemId], references: [id])
+  cpu      Cpu    @relation(fields: [cpuId], references: [id])
+}
+
+model SystemGpu {
+  id       Int    @id @default(autoincrement())
+  systemId Int
+  gpuId    Int
+  system   System @relation(fields: [systemId], references: [id])
+  gpu      Gpu    @relation(fields: [gpuId], references: [id])
+}
+
+model SystemRam {
+  id          Int       @id @default(autoincrement())
+  systemId    Int
+  ramConfigId Int
+  system      System    @relation(fields: [systemId], references: [id])
+  ramConfig   RamConfig @relation(fields: [ramConfigId], references: [id])
+}
+
+model SystemStorage {
+  id              Int           @id @default(autoincrement())
+  systemId        Int
+  storageConfigId Int
+  system          System        @relation(fields: [systemId], references: [id])
+  storageConfig   StorageConfig @relation(fields: [storageConfigId], references: [id])
+}
+
+model CpuScore {
+  id    Int @id @default(autoincrement())
+  cpuId Int @unique
+  cpu   Cpu @relation(fields: [cpuId], references: [id])
+
+  gamingScore       Int?
+  productivityScore Int?
+  developmentScore  Int?
+  cadScore          Int?
+}
+
+model GpuScore {
+  id    Int @id @default(autoincrement())
+  gpuId Int @unique
+  gpu   Gpu @relation(fields: [gpuId], references: [id])
+
+  gamingScore    Int?
+  aiComputeScore Int?
+}
+
+model Question {
+  id                Int    @id @default(autoincrement())
+  displayText       String
+  requirementsField String
+  order             Int
+
+  options QuestionOption[]
+}
+
+model QuestionOption {
+  id         Int      @id @default(autoincrement())
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
+
+  displayText String
+  value       String
 }
