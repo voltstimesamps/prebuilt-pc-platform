@@ -11,3 +11,31 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+model Manufacturer {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  website   String?
+  createdAt DateTime @default(now())
+
+  cpus      Cpu[]
+}
+
+model Cpu {
+  id                 Int          @id @default(autoincrement())
+  manufacturerId     Int
+  manufacturer       Manufacturer @relation(fields: [manufacturerId], references: [id])
+
+  name               String
+  cores              Int
+  threads            Int
+  baseClockGhz       Float
+  boostClockGhz      Float?
+  passmarkScore      Int?
+  eccSupport         Boolean      @default(false)
+  integratedGraphics Boolean      @default(false)
+  architecture       String?
+  socket             String?
+  tdpWatts           Int?
+
+  createdAt          DateTime     @default(now())
+}
