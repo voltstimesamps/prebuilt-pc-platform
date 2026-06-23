@@ -86,6 +86,7 @@ model System {
 
   name        String
   category    String
+  os          String
   priceUsd    Float
   releaseYear Int?
   url         String?
