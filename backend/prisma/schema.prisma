@@ -84,13 +84,19 @@ model System {
   manufacturerId Int
   manufacturer   Manufacturer @relation(fields: [manufacturerId], references: [id])
 
-  name        String
-  category    String
-  os          String
-  priceUsd    Float
-  releaseYear Int?
-  url         String?
-  active      Boolean @default(true)
+  name              String
+  category          String
+  lengthMm          Int?
+  widthMm           Int?
+  depthMm           Int?
+  screenResolutionX Int?
+  screenResolutionY Int?
+  weightKg          Float?
+  os                String
+  priceUsd          Float
+  releaseYear       Int?
+  url               String?
+  active            Boolean @default(true)
 
   createdAt DateTime @default(now())
 
