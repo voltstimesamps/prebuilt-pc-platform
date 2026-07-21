@@ -10,22 +10,54 @@ const router = new Hono()
 export default router
 
 prisma.system.findUnique({
-    where: { id: id },
+    where: { id },
     include: {
-        systemCpus: true,
-        systemGpus: true,
-        systemRam: true,
-        systemStorage: true
+        systemCpus: {
+            include: {
+                cpu: true
+            }
+        },
+        systemGpus: {
+            include: {
+                gpu: true
+            }
+        },
+        systemRam: {
+            include: {
+                ramConfig: true
+            }
+        },
+        systemStorage: {
+            include: {
+                storageConfig: true
+            }
+        }
     }
 })
 
 prisma.system.findMany({
-    where: { id: id },
+    where: { active: true },
     include: {
-        systemCpus: true,
-        systemGpus: true,
-        systemRam: true,
-        systemStorage: true
+        systemCpus: {
+            include: {
+                cpu: true
+            }
+        },
+        systemGpus: {
+            include: {
+                gpu: true
+            }
+        },
+        systemRam: {
+            include: {
+                ramConfig: true
+            }
+        },
+        systemStorage: {
+            include: {
+                storageConfig: true
+            }
+        }
     }
 })
 
