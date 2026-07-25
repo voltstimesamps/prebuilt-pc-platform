@@ -25,15 +25,29 @@ export type { CategoryAverages }
 
 function hardFilter(systems: any[], profile: RequirementsProfile): any[] {
   return systems.filter((system) => {
-    if (profile.category && system.category !== profile.category) return false
-    if (profile.minRamGb && !system.systemRam.some((entry: any) => entry.ramConfig?.capacityGb >= profile.minRamGb)) return false
-    if (profile.minVramGb && !system.systemGpus.some((entry: any) => entry.gpu?.vramGb >= profile.minVramGb)) return false
-    if (profile.minCpuScore && !system.systemCpus.some((entry: any) => entry.cpu?.passmarkScore >= profile.minCpuScore)) return false
-    if (profile.minStorageGb && !system.systemStorage.some((entry: any) => entry.storageConfig?.capacityGb >= profile.minStorageGb)) return false
+    if (profile.category && system.category !== profile.category) {
+      return false
+    }
+    if (profile.minRamGb && !system.systemRam.some((entry: any) => entry.ramConfig?.capacityGb >= profile.minRamGb)) {
+      return false
+    }
+    if (profile.minVramGb && !system.systemGpus.some((entry: any) => entry.gpu?.vramGb >= profile.minVramGb)) {
+      return false
+    }
+    if (profile.minCpuScore && !system.systemCpus.some((entry: any) => entry.cpu?.passmarkScore >= profile.minCpuScore)) {
+      return false
+    }
+    if (profile.minStorageGb && !system.systemStorage.some((entry: any) => entry.storageConfig?.capacityGb >= profile.minStorageGb)) {
+      return false
+    }
     if (profile.eccRequired &&
       !system.systemCpus.some((entry: any) => entry.cpu?.eccSupport === true) &&
-      !system.systemRam.some((entry: any) => entry.ramConfig?.eccSupport === true)) return false
-    if (profile.maxPriceUsd && system.priceUsd > profile.maxPriceUsd) return false
+      !system.systemRam.some((entry: any) => entry.ramConfig?.eccSupport === true)) {
+      return false
+    }
+    if (profile.maxPriceUsd && system.priceUsd > profile.maxPriceUsd) {
+      return false
+    }
     return true
   })
 }
@@ -93,3 +107,5 @@ function rankSystems(systems: any[], profile: RequirementsProfile, categoryAvera
   const finalList = scoredList.map((entry) => entry.system)
   return finalList
 }
+
+export { rankSystems }
