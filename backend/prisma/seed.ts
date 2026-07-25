@@ -6,6 +6,18 @@ if (!url) throw new Error("DATABASE_URL is not set");
 
 const adapter = new PrismaPg({ connectionString: url });
 const prisma = new PrismaClient({ adapter });
+
+await prisma.systemStorage.deleteMany()
+await prisma.systemRam.deleteMany()
+await prisma.systemGpu.deleteMany()
+await prisma.systemCpu.deleteMany()
+await prisma.system.deleteMany()
+await prisma.storageConfig.deleteMany()
+await prisma.ramConfig.deleteMany()
+await prisma.gpu.deleteMany()
+await prisma.cpu.deleteMany()
+await prisma.manufacturer.deleteMany()
+
 async function main() {
     console.log("Seeding database...")
 
@@ -444,7 +456,7 @@ async function main() {
     console.log("System RamConfigs seeded")
     //system-storage
     await prisma.systemStorage.create({
-        data: { systemId: system_Mac_Mini_M4.id, storageConfigId: storage_256GB_SSD.id }
+        data: { systemId: system_Mac_Mini_M4.id, storageConfigId: storage_512GB_SSD.id }
     })
     await prisma.systemStorage.create({
         data: { systemId: system_Mac_Mini_M4_Pro.id, storageConfigId: storage_512GB_SSD.id }
