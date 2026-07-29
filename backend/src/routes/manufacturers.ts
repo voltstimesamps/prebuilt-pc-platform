@@ -4,8 +4,6 @@ import { AnyNull } from "@prisma/client/runtime/client";
 
 const router = new Hono()
 
-export default router
-
 router.get("/", async (c) => {
     const manufacturers = await prisma.manufacturer.findMany()
     return c.json(manufacturers)
@@ -40,3 +38,5 @@ router.delete("/:id", async (c) => {
     const deleted = await prisma.manufacturer.delete({ where: { id } })
     return c.json(deleted)
 })
+
+export default router
