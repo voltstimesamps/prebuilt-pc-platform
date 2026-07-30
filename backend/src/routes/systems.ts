@@ -1,83 +1,32 @@
 import { Hono } from "hono";
 import prisma from "../database.js"
-import { get } from "node:http";
-import { stringBufferToString } from "hono/utils/html";
 import { rankSystems } from "../engine.js"
 import { CategoryAverages } from "../engine.js"
-import { parse } from "node:url";
-import { createRequire } from "node:module";
-
-var id
 
 const router = new Hono()
 
-export default router
-
-prisma.system.findUnique({
-    where: { id },
-    include: {
-        systemCpus: {
-            include: {
-                cpu: true
-            }
-        },
-        systemGpus: {
-            include: {
-                gpu: true
-            }
-        },
-        systemRam: {
-            include: {
-                ramConfig: true
-            }
-        },
-        systemStorage: {
-            include: {
-                storageConfig: true
-            }
-        }
-    }
-})
-
-prisma.system.findMany({
-    where: { active: true },
-    include: {
-        systemCpus: {
-            include: {
-                cpu: true
-            }
-        },
-        systemGpus: {
-            include: {
-                gpu: true
-            }
-        },
-        systemRam: {
-            include: {
-                ramConfig: true
-            }
-        },
-        systemStorage: {
-            include: {
-                storageConfig: true
-            }
-        }
-    }
-})
-
-router.get("/:id", async (c) => {
-    const id = parseInt(c.req.param("id"))
-    const system = await prisma.system.findUnique({
-        where: { id },
+const systemIncludes = {
+    systemCpus: {
         include: {
-            systemCpus: true, systemGpus: true, systemRam: true, systemStorage: true
+            cpu: true
         }
-    })
-    if (!system) {
-        return c.json({ error: "System not found" }, 404)
+    },
+    systemGpus: {
+        include: {
+            gpu: true
+        }
+    },
+    systemRam: {
+        include: {
+            ramConfig: true
+        }
+    },
+    systemStorage: {
+        include: {
+            storageConfig: true
+        }
     }
-    return c.json(system)
-})
+}
 
 router.get("/", async (c) => {
     const where: any = {}
@@ -101,7 +50,7 @@ router.get("/", async (c) => {
     if (active !== undefined) {
         where.active = (active === "true")
     }
-    const systems = await prisma.system.findMany({ where })
+    const systems = await prisma.system.findMany({ where, include: systemIncludes })
     return c.json(systems)
 })
 
@@ -125,31 +74,71 @@ router.post("/recommend", async (c) => {
     const requirementsProfile = await c.req.json()
     const systemsList = await prisma.system.findMany({
         where: { active: true },
-        include: {
-            systemCpus: {
-                include: {
-                    cpu: true
-                }
-            },
-            systemGpus: {
-                include: {
-                    gpu: true
-                }
-            },
-            systemRam: {
-                include: {
-                    ramConfig: true
-                }
-            },
-            systemStorage: {
-                include: {
-                    storageConfig: true
-                }
-            }
-        }
+        include: systemIncludes
     })
 
     const rankedList = rankSystems(systemsList, requirementsProfile, categoryAverages)
 
     return c.json(rankedList)
 })
+
+router.get("/:id", async (c) => {
+    const id = parseInt(c.req.param("id"))
+    const system = await prisma.system.findUnique({
+        where: { id },
+        include: systemIncludes
+    })
+    if (!system) {
+        return c.json({ error: "System not found" }, 404)
+    }
+    return c.json(system)
+})
+
+router.post("/", async (c) => {
+    const body = await c.req.json()
+    const { manufacturerId, cpuId, gpuId, ramConfigId, storageConfigId, ...rest } = body
+    const system = await prisma.system.create({
+        data: {
+            manufacturer: { connect: { id: manufacturerId } },
+            systemCpus: {
+                create: [{ cpu: { connect: { id: cpuId } } }]
+            },
+            systemGpus: {
+                create: [{ gpu: { connect: { id: gpuId } } }]
+            },
+            systemRam: {
+                create: [{ ramConfig: { connect: { id: ramConfigId } } }]
+            },
+            systemStorage: {
+                create: [{ storageConfig: { connect: { id: storageConfigId } } }]
+            },
+
+            ...rest
+        }
+    }
+    )
+    return c.json(system)
+})
+
+router.put("/:id", async (c) => {
+    const id = parseInt(c.req.param("id"))
+    const body = await c.req.json()
+    const { manufacturerId, ...rest } = body
+    const system = await prisma.system.update({
+        where: { id },
+        data: {
+            ...rest,
+            manufacturer: { connect: { id: manufacturerId } }
+        }
+    }
+    )
+    return c.json(system)
+})
+
+router.delete("/:id", async (c) => {
+    const id = parseInt(c.req.param("id"))
+    const deleted = await prisma.system.delete({ where: { id } })
+    return c.json(deleted)
+})
+
+export default router
