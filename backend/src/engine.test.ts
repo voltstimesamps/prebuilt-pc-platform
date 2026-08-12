@@ -747,3 +747,259 @@ describe('scoreSystem', () => {
         expect(resultHigh).toBe(resultLow)
     })
 })
+
+describe('rankSystem', () => {
+    it('Passes if system with higher score is ranked higher than system with lower score', () => {
+        // Arrange
+        const fakeCpuLow: TestCpu = {
+            passmarkScore: 10000,
+            eccSupport: false
+        }
+        const fakeSystemCpuLow: TestSystemCpu = {
+            cpu: fakeCpuLow
+        }
+        const fakeGpuLow: TestGpu = {
+            vramGb: 16
+        }
+        const fakeSystemGpuLow: TestSystemGpu = {
+            gpu: fakeGpuLow
+        }
+        const fakeStorageConfigLow: TestStorageConfig = {
+            capacityGb: 256
+        }
+        const fakeSystemStorageConfigLow: TestSystemStorageConfig = {
+            storageConfig: fakeStorageConfigLow
+        }
+        const fakeRamConfigLow: TestRamConfig = {
+            capacityGb: 16,
+            eccSupport: false
+        }
+        const fakeSystemRamConfigLow: TestSystemRamConfig = {
+            ramConfig: fakeRamConfigLow
+        }
+        const fakeSystemLow: TestSystem = {
+            category: 'laptop',
+            priceUsd: 1000,
+            weightKg: null,
+
+            lengthMm: null,
+            widthMm: null,
+            systemCpus: [fakeSystemCpuLow],
+            systemGpus: [fakeSystemGpuLow],
+            systemRam: [fakeSystemRamConfigLow],
+            systemStorage: [fakeSystemStorageConfigLow]
+        }
+        const fakeCpuHigh: TestCpu = {
+            passmarkScore: 20000,
+            eccSupport: false
+        }
+        const fakeSystemCpuHigh: TestSystemCpu = {
+            cpu: fakeCpuHigh
+        }
+        const fakeGpuHigh: TestGpu = {
+            vramGb: 32
+        }
+        const fakeSystemGpuHigh: TestSystemGpu = {
+            gpu: fakeGpuHigh
+        }
+        const fakeStorageConfigHigh: TestStorageConfig = {
+            capacityGb: 512
+        }
+        const fakeSystemStorageConfigHigh: TestSystemStorageConfig = {
+            storageConfig: fakeStorageConfigHigh
+        }
+        const fakeRamConfigHigh: TestRamConfig = {
+            capacityGb: 32,
+            eccSupport: false
+        }
+        const fakeSystemRamConfigHigh: TestSystemRamConfig = {
+            ramConfig: fakeRamConfigHigh
+        }
+        const fakeSystemHigh: TestSystem = {
+            category: 'laptop',
+            priceUsd: 800,
+            weightKg: null,
+
+            lengthMm: null,
+            widthMm: null,
+            systemCpus: [fakeSystemCpuHigh],
+            systemGpus: [fakeSystemGpuHigh],
+            systemRam: [fakeSystemRamConfigHigh],
+            systemStorage: [fakeSystemStorageConfigHigh]
+        }
+
+        const fakeRequirementsProfile: RequirementsProfile = {
+            category: 'laptop',
+            maxPriceUsd: 1500,
+
+            minCpuScore: 5000,
+            minRamGb: 4,
+            minVramGb: 8,
+            minStorageGb: 128,
+            eccRequired: false,
+            integratedGraphicsOk: true,
+            portabilityImportant: false,
+            localAiWorkloads: false,
+            longevityYears: null
+        }
+        // Act
+        const rankedList = rankSystems([fakeSystemLow, fakeSystemHigh], fakeRequirementsProfile, {})
+        // Assert
+        expect(rankedList[0]).toBe(fakeSystemHigh)
+        expect(rankedList[1]).toBe(fakeSystemLow)
+    })
+    it('Passes if system that fails hardFilter does not appear in rankedList', () => {
+        // Arrange
+        const fakeCpuFail: TestCpu = {
+            passmarkScore: 10000,
+            eccSupport: false
+        }
+        const fakeSystemCpuFail: TestSystemCpu = {
+            cpu: fakeCpuFail
+        }
+        const fakeGpuFail: TestGpu = {
+            vramGb: 16
+        }
+        const fakeSystemGpuFail: TestSystemGpu = {
+            gpu: fakeGpuFail
+        }
+        const fakeStorageConfigFail: TestStorageConfig = {
+            capacityGb: 256
+        }
+        const fakeSystemStorageConfigFail: TestSystemStorageConfig = {
+            storageConfig: fakeStorageConfigFail
+        }
+        const fakeRamConfigFail: TestRamConfig = {
+            capacityGb: 8,
+            eccSupport: false
+        }
+        const fakeSystemRamConfigFail: TestSystemRamConfig = {
+            ramConfig: fakeRamConfigFail
+        }
+        const fakeSystemFail: TestSystem = {
+            category: 'laptop',
+            priceUsd: 1000,
+            weightKg: null,
+
+            lengthMm: null,
+            widthMm: null,
+            systemCpus: [fakeSystemCpuFail],
+            systemGpus: [fakeSystemGpuFail],
+            systemRam: [fakeSystemRamConfigFail],
+            systemStorage: [fakeSystemStorageConfigFail]
+        }
+
+        const fakeCpuPass: TestCpu = {
+            passmarkScore: 20000,
+            eccSupport: false
+        }
+        const fakeSystemCpuPass: TestSystemCpu = {
+            cpu: fakeCpuPass
+        }
+        const fakeGpuPass: TestGpu = {
+            vramGb: 32
+        }
+        const fakeSystemGpuPass: TestSystemGpu = {
+            gpu: fakeGpuPass
+        }
+        const fakeStorageConfigPass: TestStorageConfig = {
+            capacityGb: 512
+        }
+        const fakeSystemStorageConfigPass: TestSystemStorageConfig = {
+            storageConfig: fakeStorageConfigPass
+        }
+        const fakeRamConfigPass: TestRamConfig = {
+            capacityGb: 32,
+            eccSupport: false
+        }
+        const fakeSystemRamConfigPass: TestSystemRamConfig = {
+            ramConfig: fakeRamConfigPass
+        }
+        const fakeSystemPass: TestSystem = {
+            category: 'laptop',
+            priceUsd: 800,
+            weightKg: null,
+
+            lengthMm: null,
+            widthMm: null,
+            systemCpus: [fakeSystemCpuPass],
+            systemGpus: [fakeSystemGpuPass],
+            systemRam: [fakeSystemRamConfigPass],
+            systemStorage: [fakeSystemStorageConfigPass]
+        }
+
+        const fakeRequirementsProfile: RequirementsProfile = {
+            category: 'laptop',
+            maxPriceUsd: 1500,
+
+            minCpuScore: 5000,
+            minRamGb: 16,
+            minVramGb: 24,
+            minStorageGb: 324,
+            eccRequired: false,
+            integratedGraphicsOk: true,
+            portabilityImportant: false,
+            localAiWorkloads: false,
+            longevityYears: null
+        }
+        // Act
+        const rankedList = rankSystems([fakeSystemFail, fakeSystemPass], fakeRequirementsProfile, {})
+        // Assert
+        expect(rankedList).toHaveLength(1)
+    })
+    it('Passes if smaller system outranks bigger system when portabilityImportant', () => {
+        // Arrange
+        const fakeSystemLow: TestSystem = {
+            category: 'laptop',
+            priceUsd: 1000,
+            weightKg: 1,
+
+            lengthMm: 312,
+            widthMm: 216,
+            systemCpus: null,
+            systemGpus: null,
+            systemRam: null,
+            systemStorage: null
+        }
+
+        const fakeSystemHigh: TestSystem = {
+            category: 'laptop',
+            priceUsd: 1000,
+            weightKg: 0.9,
+
+            lengthMm: 300,
+            widthMm: 200,
+            systemCpus: null,
+            systemGpus: null,
+            systemRam: null,
+            systemStorage: null
+        }
+
+        const fakeRequirementsProfile: RequirementsProfile = {
+            category: 'laptop',
+            maxPriceUsd: 1500,
+
+            minCpuScore: null,
+            minRamGb: null,
+            minVramGb: null,
+            minStorageGb: null,
+            eccRequired: false,
+            integratedGraphicsOk: true,
+            portabilityImportant: true,
+            localAiWorkloads: false,
+            longevityYears: null
+        }
+
+        const fakeCategoryAvgs: CategoryAverages = {
+            laptop: {
+                avgWeightKg: 2,
+                avgLengthMm: 300,
+                avgWidthMm: 220
+            }
+        }
+        // Act
+        const rankedList = rankSystems([fakeSystemLow, fakeSystemHigh], fakeRequirementsProfile, fakeCategoryAvgs)
+        // Assert
+        expect(rankedList[0]).toBe(fakeSystemHigh)
+    })
+})
