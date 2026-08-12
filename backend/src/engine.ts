@@ -67,23 +67,23 @@ function scoreSystem(system: any, profile: RequirementsProfile, categoryAverages
   const averages = categoryAverages[system.category]
   if (profile.minCpuScore) {
     maxScore += cpuWeight
-    score += cpuWeight * (system.systemCpus[0]?.cpu?.passmarkScore / profile.minCpuScore)
+    score += cpuWeight * Math.min((system.systemCpus[0]?.cpu?.passmarkScore / profile.minCpuScore), 1)
   }
   if (profile.localAiWorkloads) {
     maxScore += vramWeight
-    score += vramWeight * (system.systemGpus[0]?.gpu?.vramGb / profile.minVramGb)
+    score += Math.min((vramWeight * (system.systemGpus[0]?.gpu?.vramGb / profile.minVramGb)), vramWeight)
   }
   if (profile.maxPriceUsd) {
     maxScore += priceWeight
-    score += priceWeight * ((profile.maxPriceUsd - system.priceUsd) / profile.maxPriceUsd)
+    score += priceWeight * Math.min(((profile.maxPriceUsd - system.priceUsd) / profile.maxPriceUsd), 1)
   }
   if (profile.minRamGb) {
     maxScore += ramWeight
-    score += ramWeight * (system.systemRam[0]?.ramConfig?.capacityGb / profile.minRamGb)
+    score += ramWeight * Math.min((system.systemRam[0]?.ramConfig?.capacityGb / profile.minRamGb), 1)
   }
   if (profile.minStorageGb) {
     maxScore += storageWeight
-    score += storageWeight * (system.systemStorage[0]?.storageConfig?.capacityGb / profile.minStorageGb)
+    score += storageWeight * Math.min((system.systemStorage[0]?.storageConfig?.capacityGb / profile.minStorageGb), 1)
   }
   if (profile.portabilityImportant) {
     maxScore += dimensionWeight
