@@ -1,5 +1,6 @@
 type RequirementsProfile = {
   category: "desktop" | "laptop" | "mini_pc" | "workstation" | null,
+  osPreference: "windows" | "macos" | "linux" | null,
   minRamGb: number | null,
   minVramGb: number | null,
   minCpuScore: number | null,
@@ -26,6 +27,9 @@ export type { CategoryAverages }
 function hardFilter(systems: any[], profile: RequirementsProfile): any[] {
   return systems.filter((system) => {
     if (profile.category && system.category !== profile.category) {
+      return false
+    }
+    if (profile.osPreference && system.os !== profile.osPreference) {
       return false
     }
     if (profile.minRamGb && !system.systemRam.some((entry: any) => entry.ramConfig?.capacityGb >= profile.minRamGb)) {
