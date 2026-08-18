@@ -79,6 +79,13 @@ model StorageConfig {
   systemStorage SystemStorage[]
 }
 
+enum OsType {
+  windows
+  macos
+  linux
+  none
+}
+
 model System {
   id             Int          @id @default(autoincrement())
   manufacturerId Int
@@ -92,11 +99,12 @@ model System {
   screenResolutionX Int?
   screenResolutionY Int?
   weightKg          Float?
-  os                String
+  os                OsType
+  linuxCompatible   Boolean?
   priceUsd          Float
   releaseYear       Int?
   url               String?
-  active            Boolean @default(true)
+  active            Boolean  @default(true)
 
   createdAt DateTime @default(now())
 

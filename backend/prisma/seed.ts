@@ -237,55 +237,55 @@ async function main() {
 
     //systems
     const system_Mac_Mini_M4 = await prisma.system.create({
-        data: { manufacturerId: apple.id, name: "Mac Mini M4", category: "mini_pc", os: "macOS", priceUsd: 799, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/mac-mini", active: true, weightKg: 0.67, lengthMm: 127, widthMm: 127, depthMm: 50, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: apple.id, name: "Mac Mini M4", category: "mini_pc", os: "macos", priceUsd: 799, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/mac-mini", active: true, weightKg: 0.67, lengthMm: 127, widthMm: 127, depthMm: 50, screenResolutionX: null, screenResolutionY: null }
     })
     const system_Mac_Mini_M4_Pro = await prisma.system.create({
-        data: { manufacturerId: apple.id, name: "Mac Mini M4 Pro", category: "mini_pc", os: "macOS", priceUsd: 1399, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/mac-mini", active: true, weightKg: 0.67, lengthMm: 127, widthMm: 127, depthMm: 50, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: apple.id, name: "Mac Mini M4 Pro", category: "mini_pc", os: "macos", priceUsd: 1399, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/mac-mini", active: true, weightKg: 0.67, lengthMm: 127, widthMm: 127, depthMm: 50, screenResolutionX: null, screenResolutionY: null }
     })
     const system_MacBook_Air_M4_13 = await prisma.system.create({
-        data: { manufacturerId: apple.id, name: "MacBook Air M4 13\"", category: "laptop", os: "macOS", priceUsd: 1099, releaseYear: 2025, url: "https://www.apple.com/shop/buy-mac/macbook-air/13-inch", active: true, weightKg: 1.24, lengthMm: 304, widthMm: 215, depthMm: 12, screenResolutionX: 2560, screenResolutionY: 1664 }
+        data: { manufacturerId: apple.id, name: "MacBook Air M4 13\"", category: "laptop", os: "macos", priceUsd: 1099, releaseYear: 2025, url: "https://www.apple.com/shop/buy-mac/macbook-air/13-inch", active: true, weightKg: 1.24, lengthMm: 304, widthMm: 215, depthMm: 12, screenResolutionX: 2560, screenResolutionY: 1664 }
     })
     const system_MacBook_Air_M4_15 = await prisma.system.create({
-        data: { manufacturerId: apple.id, name: "MacBook Air M4 15\"", category: "laptop", os: "macOS", priceUsd: 1299, releaseYear: 2025, url: "https://www.apple.com/shop/buy-mac/macbook-air/15-inch", active: true, weightKg: 1.51, lengthMm: 340, widthMm: 237, depthMm: 12, screenResolutionX: 2880, screenResolutionY: 1864 }
+        data: { manufacturerId: apple.id, name: "MacBook Air M4 15\"", category: "laptop", os: "macos", priceUsd: 1299, releaseYear: 2025, url: "https://www.apple.com/shop/buy-mac/macbook-air/15-inch", active: true, weightKg: 1.51, lengthMm: 340, widthMm: 237, depthMm: 12, screenResolutionX: 2880, screenResolutionY: 1864 }
     })
     const system_MacBook_Pro_M4_Pro_14 = await prisma.system.create({
-        data: { manufacturerId: apple.id, name: "MacBook Pro M4 Pro 14\"", category: "laptop", os: "macOS", priceUsd: 1999, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/macbook-pro/14-inch", active: true, weightKg: 1.61, lengthMm: 312, widthMm: 221, depthMm: 16, screenResolutionX: 3024, screenResolutionY: 1964 }
+        data: { manufacturerId: apple.id, name: "MacBook Pro M4 Pro 14\"", category: "laptop", os: "macos", priceUsd: 1999, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/macbook-pro/14-inch", active: true, weightKg: 1.61, lengthMm: 312, widthMm: 221, depthMm: 16, screenResolutionX: 3024, screenResolutionY: 1964 }
     })
     const system_MacBook_Pro_M4_Max_16 = await prisma.system.create({
-        data: { manufacturerId: apple.id, name: "MacBook Pro M4 Max 16\"", category: "laptop", os: "macOS", priceUsd: 3499, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/macbook-pro/16-inch", active: true, weightKg: 2.14, lengthMm: 356, widthMm: 248, depthMm: 17, screenResolutionX: 3456, screenResolutionY: 2234 }
+        data: { manufacturerId: apple.id, name: "MacBook Pro M4 Max 16\"", category: "laptop", os: "macos", priceUsd: 3499, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/macbook-pro/16-inch", active: true, weightKg: 2.14, lengthMm: 356, widthMm: 248, depthMm: 17, screenResolutionX: 3456, screenResolutionY: 2234 }
     })
     const system_Mac_Studio_M4_Max = await prisma.system.create({
-        data: { manufacturerId: apple.id, name: "Mac Studio M4 Max", category: "desktop", os: "macOS", priceUsd: 1999, releaseYear: 2025, url: "https://www.apple.com/shop/buy-mac/mac-studio", active: true, weightKg: 2.7, lengthMm: 197, widthMm: 197, depthMm: 94, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: apple.id, name: "Mac Studio M4 Max", category: "desktop", os: "macos", priceUsd: 1999, releaseYear: 2025, url: "https://www.apple.com/shop/buy-mac/mac-studio", active: true, weightKg: 2.7, lengthMm: 197, widthMm: 197, depthMm: 94, screenResolutionX: null, screenResolutionY: null }
     })
     const system_iMac_M4 = await prisma.system.create({
-        data: { manufacturerId: apple.id, name: "iMac M4", category: "desktop", os: "macOS", priceUsd: 1299, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/imac", active: true, weightKg: 4.46, lengthMm: 547, widthMm: 461, depthMm: 147, screenResolutionX: 4480, screenResolutionY: 2520 }
+        data: { manufacturerId: apple.id, name: "iMac M4", category: "desktop", os: "macos", priceUsd: 1299, releaseYear: 2024, url: "https://www.apple.com/shop/buy-mac/imac", active: true, weightKg: 4.46, lengthMm: 547, widthMm: 461, depthMm: 147, screenResolutionX: 4480, screenResolutionY: 2520 }
     })
     const system_Mac_Pro_M2_Ultra = await prisma.system.create({
-        data: { manufacturerId: apple.id, name: "Mac Pro M2 Ultra", category: "workstation", os: "macOS", priceUsd: 6999, releaseYear: 2023, url: "https://www.apple.com/shop/buy-mac/mac-pro", active: false, weightKg: 18.14, lengthMm: 531, widthMm: 281, depthMm: 218, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: apple.id, name: "Mac Pro M2 Ultra", category: "workstation", os: "macos", priceUsd: 6999, releaseYear: 2023, url: "https://www.apple.com/shop/buy-mac/mac-pro", active: false, weightKg: 18.14, lengthMm: 531, widthMm: 281, depthMm: 218, screenResolutionX: null, screenResolutionY: null }
     })
     const system_DGX_Spark = await prisma.system.create({
-        data: { manufacturerId: nvidia.id, name: "NVIDIA DGX Spark", category: "mini_pc", os: "Linux", priceUsd: 3999, releaseYear: 2025, url: "https://www.nvidia.com/en-us/products/workstations/dgx-spark/", active: true, weightKg: 1.2, lengthMm: 150, widthMm: 150, depthMm: 51, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: nvidia.id, name: "NVIDIA DGX Spark", category: "mini_pc", os: "linux", priceUsd: 3999, releaseYear: 2025, url: "https://www.nvidia.com/en-us/products/workstations/dgx-spark/", active: true, weightKg: 1.2, lengthMm: 150, widthMm: 150, depthMm: 51, screenResolutionX: null, screenResolutionY: null }
     })
     const system_Legion_Tower_5i_Gen9 = await prisma.system.create({
-        data: { manufacturerId: lenovo.id, name: "Lenovo Legion Tower 5i Gen 9", category: "desktop", os: "Windows 11 Home", priceUsd: 1099, releaseYear: 2024, url: "https://www.lenovo.com/us/en/c/gaming-pcs/legion", active: true, weightKg: 11, lengthMm: 193, widthMm: 432, depthMm: 432, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: lenovo.id, name: "Lenovo Legion Tower 5i Gen 9", category: "desktop", os: "windows", priceUsd: 1099, releaseYear: 2024, url: "https://www.lenovo.com/us/en/c/gaming-pcs/legion", active: true, weightKg: 11, lengthMm: 193, widthMm: 432, depthMm: 432, screenResolutionX: null, screenResolutionY: null }
     })
     const system_XPS_Desktop = await prisma.system.create({
-        data: { manufacturerId: dell.id, name: "Dell XPS Desktop", category: "desktop", os: "Windows 11 Home", priceUsd: 899, releaseYear: 2024, url: "https://www.dell.com/en-us/shop/desktop-computers/xps-desktop/spd/xps-8960-desktop", active: false, weightKg: 9.3, lengthMm: 170, widthMm: 394, depthMm: 385, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: dell.id, name: "Dell XPS Desktop", category: "desktop", os: "windows", priceUsd: 899, releaseYear: 2024, url: "https://www.dell.com/en-us/shop/desktop-computers/xps-desktop/spd/xps-8960-desktop", active: false, weightKg: 9.3, lengthMm: 170, widthMm: 394, depthMm: 385, screenResolutionX: null, screenResolutionY: null }
     })
     const system_Z4_G5 = await prisma.system.create({
-        data: { manufacturerId: hp.id, name: "HP Z4 G5", category: "workstation", os: "Windows 11 Pro", priceUsd: 2280, releaseYear: 2023, url: "https://www.hp.com/us-en/workstations/z4.html", active: true, weightKg: 12.25, lengthMm: 172, widthMm: 457, depthMm: 386, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: hp.id, name: "HP Z4 G5", category: "workstation", os: "windows", priceUsd: 2280, releaseYear: 2023, url: "https://www.hp.com/us-en/workstations/z4.html", active: true, weightKg: 12.25, lengthMm: 172, widthMm: 457, depthMm: 386, screenResolutionX: null, screenResolutionY: null }
     })
     const system_ThinkStation_P3_Ultra_SFF_Gen2 = await prisma.system.create({
-        data: { manufacturerId: lenovo.id, name: "Lenovo ThinkStation P3 Ultra SFF Gen 2", category: "workstation", os: "Windows 11 Pro", priceUsd: 1749, releaseYear: 2025, url: "https://www.lenovo.com/us/en/p/workstations/thinkstation-p-series/lenovo-thinkstation-p3-ultra-sff-gen-2-intel/len102s0022", active: true, weightKg: 3.6, lengthMm: 87, widthMm: 223, depthMm: 202, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: lenovo.id, name: "Lenovo ThinkStation P3 Ultra SFF Gen 2", category: "workstation", os: "windows", priceUsd: 1749, releaseYear: 2025, url: "https://www.lenovo.com/us/en/p/workstations/thinkstation-p-series/lenovo-thinkstation-p3-ultra-sff-gen-2-intel/len102s0022", active: true, weightKg: 3.6, lengthMm: 87, widthMm: 223, depthMm: 202, screenResolutionX: null, screenResolutionY: null }
     })
     const system_Minisforum_UM890_Pro = await prisma.system.create({
-        data: { manufacturerId: minisforum.id, name: "Minisforum UM890 Pro", category: "mini_pc", os: "Windows 11 Pro", priceUsd: 649, releaseYear: 2024, url: "https://store.minisforum.com/products/minisforum-um890pro-mini-pc", active: true, weightKg: null, lengthMm: null, widthMm: null, depthMm: null, screenResolutionX: null, screenResolutionY: null }
+        data: { manufacturerId: minisforum.id, name: "Minisforum UM890 Pro", category: "mini_pc", os: "windows", priceUsd: 649, releaseYear: 2024, url: "https://store.minisforum.com/products/minisforum-um890pro-mini-pc", active: true, weightKg: null, lengthMm: null, widthMm: null, depthMm: null, screenResolutionX: null, screenResolutionY: null }
     })
     const system_XPS_15 = await prisma.system.create({
-        data: { manufacturerId: dell.id, name: "Dell XPS 15", category: "laptop", os: "Windows 11 Home", priceUsd: 1499, releaseYear: 2023, url: "https://www.dell.com/en-us/shop/dell-laptops/xps-15-laptop/spd/xps-15-9530-laptop", active: true, weightKg: 1.86, lengthMm: 344, widthMm: 230, depthMm: 18, screenResolutionX: 1920, screenResolutionY: 1200 }
+        data: { manufacturerId: dell.id, name: "Dell XPS 15", category: "laptop", os: "windows", priceUsd: 1499, releaseYear: 2023, url: "https://www.dell.com/en-us/shop/dell-laptops/xps-15-laptop/spd/xps-15-9530-laptop", active: true, weightKg: 1.86, lengthMm: 344, widthMm: 230, depthMm: 18, screenResolutionX: 1920, screenResolutionY: 1200 }
     })
     const system_ThinkPad_X1_Carbon_Gen11 = await prisma.system.create({
-        data: { manufacturerId: lenovo.id, name: "Lenovo ThinkPad X1 Carbon Gen 11", category: "laptop", os: "Windows 11 Pro", priceUsd: 1435, releaseYear: 2023, url: "https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadx1/thinkpad-x1-carbon-gen-11-14-inch-intel/len101t0049", active: true, weightKg: 1.12, lengthMm: 316, widthMm: 222, depthMm: 15, screenResolutionX: 1920, screenResolutionY: 1200 }
+        data: { manufacturerId: lenovo.id, name: "Lenovo ThinkPad X1 Carbon Gen 11", category: "laptop", os: "windows", priceUsd: 1435, releaseYear: 2023, url: "https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadx1/thinkpad-x1-carbon-gen-11-14-inch-intel/len101t0049", active: true, weightKg: 1.12, lengthMm: 316, widthMm: 222, depthMm: 15, screenResolutionX: 1920, screenResolutionY: 1200 }
     })
 
     console.log("Systems seeded")
