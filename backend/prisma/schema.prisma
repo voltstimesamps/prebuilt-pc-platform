@@ -83,7 +83,6 @@ enum OsType {
   windows
   macos
   linux
-  none
 }
 
 model System {
