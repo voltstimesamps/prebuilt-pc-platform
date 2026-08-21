@@ -1,12 +1,13 @@
 type GamingSignal = "casual" | "serious" | null
 type Weight = 1 | 2 | 3 | 4 | 5
-type Category = "everyday" | "creative" | "gaming" | "development" | "aiml" | "professional"
+type TileCategory = "everyday" | "creative" | "gaming" | "development" | "aiml" | "professional"
 
+export type { GamingSignal, TileCategory }
 
 interface Tile {
     id: string;
     label: string;
-    category: Category;
+    category: TileCategory;
     ramWeight: Weight;
     storageWeight: Weight;
     cpuWeight: Weight;
@@ -20,7 +21,7 @@ export const Tiles: Tile[] = [
     {
         id: "web_browsing",
         label: "Web Browsing (Chrome, Firefox)",
-        category: "everyday",
+        category: "everyday",   
         ramWeight: 2,
         storageWeight: 1,
         cpuWeight: 1,
