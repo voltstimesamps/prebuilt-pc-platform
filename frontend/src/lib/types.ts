@@ -23,7 +23,7 @@ export interface QuestionnaireAnswers {
     longevityYears: number | null;
     osPreference: OsPreference | null;
     selectedTileIds: string[];
-    gamingStyle: "regular" | "competitive" | "demanding" | null;
-    targetResolution: "1080p" | "1440p" | "4k" | null;
-    aiModelSize: "small" | "mid" | "large" | null
+    gamingStyle?: "regular" | "competitive" | "demanding" | null;
+    targetResolution?: "1080p" | "1440p" | "4k" | null;
+    aiModelSize?: "small" | "mid" | "large" | null
 }
