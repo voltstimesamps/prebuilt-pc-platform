@@ -1,5 +1,6 @@
 export type SystemCategory =  "desktop" | "laptop" | "mini_pc" | "workstation"
 export type OsPreference = "windows" | "macos" | "linux"
+export type QuestionnaireStep = "category" | "budget" | "longevity" | "os" | "tiles" | "gaming_style" | "target_resolution" | "ai_model_size" | null
 
 export interface RequirementsProfile {
   category: SystemCategory | null;
@@ -17,9 +18,9 @@ export interface RequirementsProfile {
 }
 
 export interface QuestionnaireAnswers {
-    category: SystemCategory;
-    budgetUsd: number;
-    longevityYears: number;
+    category: SystemCategory | null;
+    budgetUsd: number | null;
+    longevityYears: number | null;
     osPreference: OsPreference | null;
     selectedTileIds: string[];
     gamingStyle: "regular" | "competitive" | "demanding" | null;
