@@ -4,7 +4,8 @@ import type { QuestionnaireAnswers, QuestionnaireStep } from "@/lib/types";
 import { deriveSteps } from '@/lib/steps';
 import { useRouter } from 'next/navigation';
 import { buildRequirementsProfile } from '@/lib/aggregation';
-import { CategoryStep } from "@/components/questionnaire/CategoryStep"
+import CategoryStep from "@/components/questionnaire/CategoryStep"
+import BudgetStep from '@/components/BudgetStep';
 
 export default function QuestionnairePage () {
     const router = useRouter()
@@ -30,6 +31,8 @@ export default function QuestionnairePage () {
         switch (step) {
             case "category":
                 return <CategoryStep answers={answers} onAnswer={handleAnswer} />
+            case "budget":
+                return <BudgetStep answers={answers} onAnswer={handleAnswer} />
             default:
                 const _exhaustiveCheck: never = step
                 return null
