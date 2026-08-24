@@ -3,6 +3,7 @@ export type OsPreference = "windows" | "macos" | "linux" | "none"
 export type QuestionnaireStep = "category" | "budget" | "longevity" | "os" | "tiles" | "gaming_style" | "target_resolution" | "ai_model_size" | null
 export type GamingStyle = "regular" | "competitive" | "demanding" | null
 export type TargetResolution = "4k" | "1440p" | "1080p" | null
+export type AiModelSize = "large" | "mid" | "small" | null
 
 export interface RequirementsProfile {
   category: SystemCategory | null;
