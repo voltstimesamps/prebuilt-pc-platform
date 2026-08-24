@@ -13,7 +13,7 @@ function BudgetStep({ answers, onAnswer }: Props){
     const [selected, setSelected] = useState<number>(answers.budgetUsd ?? MAX_BUDGET / 2)
     return (
         <div>
-            <h2>Budget</h2>
+            <h2>What is your budget?</h2>
             <div>
                 <input type="range"
                 min={0}

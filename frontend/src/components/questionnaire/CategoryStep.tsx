@@ -6,7 +6,7 @@ interface Props {
     onAnswer: (update: Partial<QuestionnaireAnswers>)  => void;
 }
 
-export function CategoryStep( { answers, onAnswer }: Props){
+function CategoryStep( { answers, onAnswer }: Props){
     const [selected, setSelected] = useState<SystemCategory | null>(answers.category)
     const options = [
         { value: "desktop" as SystemCategory, label: "Desktop" },
@@ -37,3 +37,5 @@ export function CategoryStep( { answers, onAnswer }: Props){
         </div>
     )
 }
+
+export default CategoryStep
