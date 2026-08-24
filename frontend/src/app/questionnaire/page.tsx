@@ -5,7 +5,7 @@ import { deriveSteps } from '@/lib/steps';
 import { useRouter } from 'next/navigation';
 import { buildRequirementsProfile } from '@/lib/aggregation';
 import CategoryStep from "@/components/questionnaire/CategoryStep"
-import BudgetStep from '@/components/BudgetStep';
+import BudgetStep from '@/components/questionnaire/BudgetStep';
 
 export default function QuestionnairePage () {
     const router = useRouter()
