@@ -6,14 +6,18 @@ import { useRouter } from 'next/navigation';
 import { buildRequirementsProfile } from '@/lib/aggregation';
 import CategoryStep from "@/components/questionnaire/CategoryStep"
 import BudgetStep from '@/components/questionnaire/BudgetStep';
+import LongevityStep from '@/components/questionnaire/LongevityStep';
+import OsStep from '@/components/questionnaire/OsStep';
+import TilesStep from '@/components/questionnaire/TilesStep';
+import GamingStyleStep from '@/components/questionnaire/GamingStyleStep';
+import TargetResolutionStep from '@/components/questionnaire/TargetResolutionStep';
+import AiModelSizeStep from '@/components/questionnaire/AiModelSizeStep';
 
 export default function QuestionnairePage () {
     const router = useRouter()
     const [answers, setAnswers] = useState<QuestionnaireAnswers>({category: null, budgetUsd: null, longevityYears: null, osPreference: null, selectedTileIds: []})
     const [step, setStep] = useState<QuestionnaireStep | null>(null)
-    
-    
-    
+        
     function handleAnswer(update: Partial<QuestionnaireAnswers>){
         const updatedAnswers = { ...answers, ...update}
         setAnswers(updatedAnswers)
@@ -33,6 +37,18 @@ export default function QuestionnairePage () {
                 return <CategoryStep answers={answers} onAnswer={handleAnswer} />
             case "budget":
                 return <BudgetStep answers={answers} onAnswer={handleAnswer} />
+            case "longevity":
+                return <LongevityStep answers={answers} onAnswer={handleAnswer} />
+            case "os":
+                return <OsStep answers={answers} onAnswer={handleAnswer} />
+            case "tiles":
+                return <TilesStep answers={answers} onAnswer={handleAnswer} />
+            case "gaming_style":
+                return <GamingStyleStep answers={answers} onAnswer={handleAnswer} />
+            case "target_resolution":
+                return <TargetResolutionStep answers={answers} onAnswer={handleAnswer} />
+            case "ai_model_size":
+                return <AiModelSizeStep answers={answers} onAnswer={handleAnswer} />
             default:
                 const _exhaustiveCheck: never = step
                 return null
