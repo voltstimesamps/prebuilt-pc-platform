@@ -5,6 +5,7 @@ import { parse } from 'path';
 interface Props {
     answers: QuestionnaireAnswers
     onAnswer: (update: Partial<QuestionnaireAnswers>)  => void;
+}
 function LongevityStep({ answers, onAnswer }: Props){
     const [selected, setSelected ] = useState<number | null>(answers.longevityYears)
     const options = [1, 2, 3, 4, 5]
@@ -49,6 +50,6 @@ function LongevityStep({ answers, onAnswer }: Props){
             </button>
         </div>
     )
-}}
+}
 
 export default LongevityStep
