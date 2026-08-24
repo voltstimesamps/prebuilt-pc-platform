@@ -30,7 +30,7 @@ function BudgetStep({ answers, onAnswer }: Props){
                 onChange={(e) => {
                     const parsed = Number(e.target.value)
                     if(isNaN(parsed) || e.target.value === ""){
-                        setSelected(MAX_BUDGET / 2)
+                        setSelected(0)
                     } else {
                         setSelected(parsed)
                     }
