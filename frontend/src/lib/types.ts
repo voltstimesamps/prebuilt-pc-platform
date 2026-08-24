@@ -1,5 +1,5 @@
 export type SystemCategory =  "desktop" | "laptop" | "mini_pc" | "workstation"
-export type OsPreference = "windows" | "macos" | "linux" | null
+export type OsPreference = "windows" | "macos" | "linux" | "none"
 export type QuestionnaireStep = "category" | "budget" | "longevity" | "os" | "tiles" | "gaming_style" | "target_resolution" | "ai_model_size" | null
 
 export interface RequirementsProfile {
