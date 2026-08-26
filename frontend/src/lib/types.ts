@@ -30,3 +30,88 @@ export interface QuestionnaireAnswers {
     targetResolution?: "1080p" | "1440p" | "4k" | null;
     aiModelSize?: "small" | "mid" | "large" | null
 }
+
+type OsType = "windows" | "macos" | "linux"
+export interface Manufacturer {
+  id: number;
+  name: string;
+  website: string | null;
+}
+export interface Cpu {
+  id: number;
+  manufacturerId: number;
+  name: string;
+  baseClockGhz: number;
+  boostClockGhz: number | null;
+  passmarkScore: number | null;
+  eccSupport: boolean;
+  integratedGraphics: boolean;
+  tdpWatts: number | null
+}
+export interface Gpu {
+  id: number;
+  manufacturerId: number;
+  name: string;
+  vramGb: number;
+  passmarkScore: number | null;
+  tdpWatts: number| null;
+  isIntegrated: boolean
+}
+export interface RamConfig {
+  id: number;
+  capacityGb: number;
+  type: string;
+  eccSupport: boolean
+}
+export interface StorageConfig {
+  id: number;
+  capacityGb: number;
+  type: string
+}
+export interface SystemCpu {
+  id: number;
+  systemId: number;
+  cpuId: number;
+  cpu: Cpu
+}
+export interface SystemGpu {
+  id: number;
+  systemId: number;
+  gpuId: number;
+  gpu: Gpu
+}
+export interface SystemRam {
+  id: number;
+  systemId: number;
+  ramConfigId: number;
+  ramConfig: RamConfig
+}
+export interface SystemStorage {
+  id: number;
+  systemId: number;
+  storageConfigId: number;
+  storageConfig: StorageConfig
+}
+export interface System {
+  id: number;
+  manufacturerId: number;
+  name: string;
+  category: SystemCategory;
+  lengthMm: number | null;
+  widthMm: number | null;
+  depthMm: number | null;
+  screenResolutionX: number | null;
+  screenResolutionY: number | null;
+  weightKg: number | null;
+  os: OsType;
+  linuxCompatible: boolean | null;
+  priceUsd: number;
+  releaseYear: number | null;
+  url: string | null;
+  active: boolean
+
+  systemCpus: SystemCpu[];
+  systemGpus: SystemGpu[];
+  systemRam: SystemRam[];
+  systemStorage: SystemStorage[]
+}
