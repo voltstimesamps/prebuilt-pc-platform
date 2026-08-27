@@ -8,7 +8,7 @@ export function buildRequirementsProfile(answers: QuestionnaireAnswers): Require
     let category = answers.category
     const maxPriceUsd = answers.budgetUsd
     const longevityYears = answers.longevityYears
-    const osPreference = answers.osPreference
+    const osPreference = (answers.osPreference === "none" ? null : answers.osPreference)
 
     const portabilityImportant = answers.category === "laptop"
     const eccRequired = selectedTiles.some(tile => tile.eccSignal)
