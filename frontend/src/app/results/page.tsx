@@ -2,11 +2,11 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { System } from "@/lib/types"
-import { profile } from "console"
+import Link from "next/link"
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? ''
 
-export default function ResultsPage(){
+export default function ResultsPage() {
     const router = useRouter()
 
     const [results, setResults] = useState<System[] | null>(null)
@@ -15,58 +15,57 @@ export default function ResultsPage(){
 
     useEffect(() => {
         async function fetchResults() {
-            try{
+            try {
                 const rawReqProfile = sessionStorage.getItem("requirementsProfile")
-                if(rawReqProfile === null){
+                if (rawReqProfile === null) {
                     router.push("/questionnaire")
                     return
                 }
-                    const requirementsProfile = JSON.parse(rawReqProfile)
-                    const options = {
-                        method: "POST",
-                        headers: {"Content-Type": "application/json"}, 
-                        body: JSON.stringify(requirementsProfile)
-                    }
-                    const recommend = await fetch(API_BASE_URL + "/systems/recommend", options)
-                    const parsedRecommend = await recommend.json()
-                    setResults(parsedRecommend)                                
+                const requirementsProfile = JSON.parse(rawReqProfile)
+                const options = {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(requirementsProfile)
+                }
+                const recommend = await fetch(API_BASE_URL + "/systems/recommend", options)
+                const parsedRecommend = await recommend.json()
+                setResults(parsedRecommend)
             } catch (err) {
-                if(err instanceof Error){
+                if (err instanceof Error) {
                     setError(err.message)
                 } else {
                     setError("Something went wrong")
                 }
             } finally {
-                 setLoading(false)
-            }}
-    fetchResults()
+                setLoading(false)
+            }
+        }
+        fetchResults()
     }, [])
-    if(loading){
-        return(
+    if (loading) {
+        return (
             <div>Loading...</div>
         )
-    } else if(error){
-        return(
+    } else if (error) {
+        return (
             <div>Error: {error}</div>
         )
-    } else if(results?.length === 0){
-        return(
+    } else if (results?.length === 0) {
+        return (
             <div>No results. Please try again with lower specifications</div>
         )
     } else {
-        return(
+        return (
             <div>
                 <h1>Results:</h1>
-                <div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                     {results?.map((result, index) => (
-                        <div
-                        key={result.id}>
+                        <Link key={result.id} href={`/systems/${result.id}`}>
                             {index + 1}. {result.name} - ${result.priceUsd}
-                            
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
         )
-    }    
+    }
 }
