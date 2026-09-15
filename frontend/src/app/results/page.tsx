@@ -41,29 +41,64 @@ export default function ResultsPage() {
             }
         }
         fetchResults()
+
     }, [])
     if (loading) {
         return (
-            <div>Loading...</div>
+            <div className="max-w-5x1 mx-auto px-6 py-10">
+                <p className="font-body text-text-muted">Loading results...</p>
+            </div>
         )
     } else if (error) {
         return (
-            <div>Error: {error}</div>
+            <div className="max-w-5x1 mx-auto px-6 py-10">
+                <p className="font-body text-text-primary">Something went wrong: {error}</p>
+                <div className="flex justify-center mt-8">
+                    <Link href="/questionnaire" className="border border-accent-teal text-accent-teal font-heading px-4 py-2 hover:bg-accent-teal hover:text-bg transition-colors">
+                        Back to Questionnaire
+                    </Link>
+                </div>
+            </div>
         )
     } else if (results?.length === 0) {
         return (
-            <div>No results. Please try again with lower specifications</div>
+            <div className="max-w-5xl mx-auto px-6 py-10">
+                <p className="font-body text-text-primary">No results. Try adjusting your requirements and searching again.</p>
+                <div className="flex justify-center mt-8">
+                    <Link href="/questionnaire" className="border border-accent-teal text-accent-teal font-heading px-4 py-2 hover:bg-accent-teal hover:text-bg transition-colors">
+                        Back to Questionnaire
+                    </Link>
+                </div>
+            </div>
         )
     } else {
         return (
-            <div>
-                <h1>Results:</h1>
-                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <div className="max-w-3x1 mx-auto px-6 py-10">
+                <h1 className="font-heading text 3x1 text-text-primary mb-6">Results</h1>
+                <div className="divide-y divide-hairline">
                     {results?.map((result, index) => (
-                        <Link key={result.id} href={`/systems/${result.id}`}>
-                            {index + 1}. {result.name} - ${result.priceUsd}
+                        <Link key={result.id} href={`/systems/${result.id}`} className="flex items-center gap-4 py-4">
+                            <span className="w-6 shrink-0 font-mono text-text-muted text-sm text-right">
+                                {index + 1}
+                            </span>
+                            <div className="w-16 h-16 shrink-0 bg-panel border border-hairline" />
+                            <div className="flex flex-col flex-1 gap-1">
+                                {index === 0 && (
+                                    <span className="font-mono text-accent-teal text-xs">Best Match</span>
+                                )}
+                                <div className="flex justify-between items-baseline">
+                                    <h2 className="font-heading text-text-primary">{result.name}</h2>
+                                    <span className="font-mono text-accent-copper">${result.priceUsd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                                </div>
+                                <p className="font-mono text-text-muted text-sm">
+                                    {result.systemCpus[0]?.cpu.name} · {result.systemGpus[0]?.gpu.name} · {result.systemRam[0]?.ramConfig.capacityGb}GB {result.systemRam[0]?.ramConfig.type}
+                                </p>
+                            </div>
                         </Link>
                     ))}
+                    <Link href="/questionnaire" className="mt-8 inline-block border border-accent-teal text-accent-teal font-heading px-4 py-2 hover:bg-accent-teal hover:text-bg transition-colors">
+                        Back to Questionnaire
+                    </Link>
                 </div>
             </div>
         )

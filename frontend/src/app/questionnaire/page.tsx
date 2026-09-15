@@ -13,17 +13,17 @@ import GamingStyleStep from '@/components/questionnaire/GamingStyleStep';
 import TargetResolutionStep from '@/components/questionnaire/TargetResolutionStep';
 import AiModelSizeStep from '@/components/questionnaire/AiModelSizeStep';
 
-export default function QuestionnairePage () {
+export default function QuestionnairePage() {
     const router = useRouter()
-    const [answers, setAnswers] = useState<QuestionnaireAnswers>({category: null, budgetUsd: null, longevityYears: null, osPreference: null, selectedTileIds: []})
+    const [answers, setAnswers] = useState<QuestionnaireAnswers>({ category: null, budgetUsd: null, longevityYears: null, osPreference: null, selectedTileIds: [] })
     const [step, setStep] = useState<QuestionnaireStep | null>(null)
-        
-    function handleAnswer(update: Partial<QuestionnaireAnswers>){
-        const updatedAnswers = { ...answers, ...update}
+
+    function handleAnswer(update: Partial<QuestionnaireAnswers>) {
+        const updatedAnswers = { ...answers, ...update }
         setAnswers(updatedAnswers)
         const steps = deriveSteps(updatedAnswers)
         const nextStepIndex = steps.indexOf(step) + 1
-        if(steps[nextStepIndex] !== undefined){
+        if (steps[nextStepIndex] !== undefined) {
             setStep(steps[nextStepIndex])
         } else {
             const profile = buildRequirementsProfile(updatedAnswers)
@@ -31,7 +31,7 @@ export default function QuestionnairePage () {
             router.push("/results")
         }
     }
-    function renderStep(step: QuestionnaireStep){
+    function renderStep(step: QuestionnaireStep) {
         switch (step) {
             case "category":
                 return <CategoryStep answers={answers} onAnswer={handleAnswer} />
@@ -52,19 +52,22 @@ export default function QuestionnairePage () {
             default:
                 const _exhaustiveCheck: never = step
                 return null
-            }
+        }
     }
-    if(step === null){
-        return (
-            <div>
-                <h1>Computer Recommendation Questionnaire</h1>
-                <p>Find your next computer! Answer this ~5 min questionnaire and it will match you with your next computer system. Computer database updated as frequently as possible; might not be current to all market computer.</p>
-                <button
-                onClick={() => handleAnswer({})}>
-                    Get Started
-                </button>
-            </div>
-    )}
-    return renderStep(step)
+    return (
+        <div className="max-w-2xl mx-auto px-6 py-12">
+            {step === null ? (
+                <div className="flex flex-col items-center justify-center min-h-screen text-center gap-6 px-6 py-6">
+                    <h1 className="font-heading text-text-primary text-4xl">Computer Recommendation Questionnaire</h1>
+                    <p className="font-body text-text-muted max-w-prose">Find your next computer! Answer this ~5 min questionnaire and it will match you with your next computer system. Computer database updated as frequently as possible; might not be current to all market computer.</p>
+                    <button
+                        className="inline-block border border-accent-copper text-accent-copper font-heading px-4 py-2 hover:bg-accent-copper hover:text-bg transition-colors"
+                        onClick={() => handleAnswer({})}>
+                        Get Started
+                    </button>
+                </div>
+            ) : renderStep(step)}
+        </div>
+    )
 }
 
