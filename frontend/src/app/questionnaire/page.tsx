@@ -74,7 +74,7 @@ export default function QuestionnairePage() {
             {!introDismissed ? (
                 <div className="flex flex-col items-center justify-center min-h-screen text-center gap-6">
                     <h1 className="font-heading text-text-primary text-4xl">Computer Recommendation Questionnaire</h1>
-                    <p className="font-body text-text-muted max-w-prose">Find your next computer! Answer this ~5 min questionnaire and it will match you with your next computer system. Computer database updated as frequently as possible; might not be current to all market computer.</p>
+                    <p className="font-body text-text-muted max-w-prose">Find your next computer! Answer this ~5 min questionnaire and it will match you with your next computer system. Computer database updated as frequently as possible; might not be current to all market computers.</p>
                     <button
                         className="inline-block border border-accent-copper text-accent-copper font-heading px-4 py-2 hover:bg-accent-copper hover:text-bg transition-colors"
                         onClick={() => setIntroDismissed(true)}
