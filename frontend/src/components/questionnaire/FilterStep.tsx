@@ -311,7 +311,7 @@ function FilterStep() {
                 
                 <div className="divide-y divide-hairline pb-6">
                 {sortedResults.map((result) => (
-                    <Link key={result.id} href={"/systems/" + result.id} className="flex items-center gap-4 py-4 px-6">
+                    <Link key={result.id} href={"/systems/" + result.id} className="flex items-center gap-4 py-4 px-6 rounded-md hover:ring-2 hover:ring-inset hover:ring-accent-teal transition-shadow">
                         {result.systemImages.length > 0
                                 ? <img src={result.systemImages[0].url} alt={result.systemImages[0].altText || result.name} className="w-16 h-16 shrink-0 border border-hairline object-contain bg-panel" />
                                 : <div className="w-16 h-16 shrink-0 bg-panel border border-hairline" />

@@ -76,10 +76,10 @@ export default function ResultsPage() {
     } else {
         return (
             <div className="max-w-3xl mx-auto px-6 py-10">
-                <h1 className="font-heading text 3xl text-text-primary mb-6">Results</h1>
+                <h1 className="font-heading text-3xl text-text-primary mb-6">Results</h1>
                 <div className="divide-y divide-hairline">
                     {results?.map((result, index) => (
-                        <Link key={result.id} href={`/systems/${result.id}`} className="flex items-center gap-4 py-4">
+                        <Link key={result.id} href={`/systems/${result.id}`} className="flex items-center gap-4 py-4 px-6 rounded-md hover:ring-2 hover:ring-inset hover:ring-accent-teal transition-shadow">
                             <span className="w-6 shrink-0 font-mono text-text-muted text-sm text-right">
                                 {index + 1}
                             </span>
