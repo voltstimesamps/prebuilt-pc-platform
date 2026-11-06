@@ -1,17 +1,41 @@
 "use client"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { System } from "@/lib/types"
+import { System, QuestionnaireAnswers, OsType, SystemCategory } from "@/lib/types"
 import Link from "next/link"
 import { apiUrl } from "@/lib/api"
+const osText: Record<OsType, string> = { windows: "Windows", linux: "Linux", macos: "macOS"}
+const categoryText: Record<SystemCategory, string> = { laptop: "Laptop", desktop: "Desktop", mini_pc: "Mini PC", workstation: "Workstation"}
 
+function questionnaireAnswersFeedback (questionnaireAnswers: QuestionnaireAnswers) {
+    const textComponents: string[] = []
+    if(questionnaireAnswers.budgetUsd) {
+    
+    }
+    if(questionnaireAnswers.category) {
+        if(questionnaireAnswers.category === "desktop") {
+            textComponents.push(categoryText.desktop)
+        } else if (questionnaireAnswers.category === "laptop") {
+            textComponents.push(categoryText.laptop)
+        } else if (questionnaireAnswers.category === "mini_pc") {
+            textComponents.push(categoryText.mini_pc)
+        } else if (questionnaireAnswers.category === "workstation") {
+            textComponents.push(categoryText.workstation)
+        } else {
+            textComponents.push("Systems")
+        }
+    }
+    if(questionnaireAnswers.osPreference) {
+
+    }
+}
 export default function ResultsPage() {
     const router = useRouter()
 
     const [results, setResults] = useState<System[] | null>(null)
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string | null>(null)
-
+    const [questionnaireAnswers, setQuestionnaireAnswers] = useState<QuestionnaireAnswers | null>(null)
     useEffect(() => {
         async function fetchResults() {
             try {
@@ -45,6 +69,17 @@ export default function ResultsPage() {
         fetchResults()
 
     }, [])
+    useEffect(() => {
+            try {
+                const rawQuestionnaireAnswers = sessionStorage.getItem("questionnaireAnswers")
+                if (rawQuestionnaireAnswers !== null) {
+                    setQuestionnaireAnswers(JSON.parse(rawQuestionnaireAnswers))
+                }
+            }
+            catch {
+                console.warn("questionnaireAnswers failed to be read.")
+            }
+        }, [])
     if (loading) {
         return (
             <div className="max-w-5xl mx-auto px-6 py-10">

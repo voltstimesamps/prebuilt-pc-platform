@@ -40,6 +40,7 @@ export default function QuestionnairePage() {
         } else {
             const profile = buildRequirementsProfile(updatedAnswers)
             sessionStorage.setItem("requirementsProfile", JSON.stringify(profile))
+            sessionStorage.setItem("questionnaireAnswers", JSON.stringify(updatedAnswers))
             router.push("/results")
         }
     }
