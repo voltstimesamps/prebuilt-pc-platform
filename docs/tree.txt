@@ -1,0 +1,109 @@
+├── backend
+│  ├── .env.example
+│  ├── dist
+│  │  ├── package.json
+│  │  └── src
+│  │    └── index.js
+│  ├── package-lock.json
+│  ├── package.json
+│  ├── prisma
+│  │  ├── import.ts
+│  │  ├── migrations
+│  │  │  ├── 20260622221354_add_full_schema
+│  │  │  │  └── migration.sql
+│  │  │  ├── 20260623005212_add_os_column
+│  │  │  │  └── migration.sql
+│  │  │  ├── 20260623231333_add_dimensions_and_weight_columns
+│  │  │  │  └── migration.sql
+│  │  │  ├── 20260827180556_add_linux_compatible_and_os
+│  │  │  │  └── migration.sql
+│  │  │  ├── 20261017201149_add_system_images
+│  │  │  │  └── migration.sql
+│  │  │  ├── 20261018003534_add_system_images
+│  │  │  │  └── migration.sql
+│  │  │  ├── 20261018013308_convert_category_to_enum
+│  │  │  │  └── migration.sql
+│  │  │  ├── 20261018095424_add_indexes_and_updated_at
+│  │  │  │  └── migration.sql
+│  │  │  └── migration_lock.toml
+│  │  ├── schema.prisma
+│  │  ├── seed.ts
+│  │  ├── sheet-corrections.sql
+│  │  └── xlsx-to-csv.ts
+│  ├── prisma.config.ts
+│  ├── src
+│  │  ├── auth.ts
+│  │  ├── database.ts
+│  │  ├── engine.test.ts
+│  │  ├── engine.ts
+│  │  ├── index.ts
+│  │  ├── params.ts
+│  │  └── routes
+│  │    ├── cpus.ts
+│  │    ├── gpus.ts
+│  │    ├── manufacturers.ts
+│  │    └── systems.ts
+│  ├── tsconfig.build.json
+│  ├── tsconfig.json
+│  └── vitest.config.ts
+├── docs
+│  ├── AGENTS.md
+│  ├── prebuilt-pc-platform-plan.md
+│  └── tree.txt
+├── frontend
+│  ├── eslint.config.mjs
+│  ├── next-env.d.ts
+│  ├── next.config.ts
+│  ├── package-lock.json
+│  ├── package.json
+│  ├── postcss.config.mjs
+│  ├── public
+│  │  ├── file.svg
+│  │  ├── globe.svg
+│  │  ├── next.svg
+│  │  ├── vercel.svg
+│  │  └── window.svg
+│  ├── src
+│  │  ├── app
+│  │  │  ├── favicon.ico
+│  │  │  ├── filter
+│  │  │  │  └── page.tsx
+│  │  │  ├── globals.css
+│  │  │  ├── layout.tsx
+│  │  │  ├── page.tsx
+│  │  │  ├── questionnaire
+│  │  │  │  └── page.tsx
+│  │  │  ├── results
+│  │  │  │  └── page.tsx
+│  │  │  └── systems
+│  │  │    ├── [id]
+│  │  │    │  ├── error.tsx
+│  │  │    │  ├── loading.tsx
+│  │  │    │  ├── not-found.tsx
+│  │  │    │  └── page.tsx
+│  │  │    └── ImageCarousel.tsx
+│  │  ├── components
+│  │  │  └── questionnaire
+│  │  │    ├── AiModelSizeStep.tsx
+│  │  │    ├── BudgetStep.tsx
+│  │  │    ├── CategoryStep.tsx
+│  │  │    ├── FamiliarityStep.tsx
+│  │  │    ├── FilterStep.tsx
+│  │  │    ├── GamingStyleStep.tsx
+│  │  │    ├── GuidedQuestionnaireLayout.tsx
+│  │  │    ├── index.ts
+│  │  │    ├── LongevityStep.tsx
+│  │  │    ├── OsStep.tsx
+│  │  │    ├── TargetResolutionStep.tsx
+│  │  │    └── TilesStep.tsx
+│  │  └── lib
+│  │    ├── aggregation.ts
+│  │    ├── api.ts
+│  │    ├── Guidance.tsx
+│  │    ├── steps.ts
+│  │    ├── tiles.ts
+│  │    └── types.ts
+│  ├── tsconfig.json
+│  └── tsconfig.tsbuildinfo
+├── README.md
+└── vercel.json
