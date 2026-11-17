@@ -10,17 +10,17 @@ function FamiliarityStep({ onSelect }: Props) {
                 <button
                     onClick={() => onSelect("low")}
                     className="border rounded-md px-4 py-3 font-body text-text-primary bg-panel border-hairline hover:border-accent-teal transition-colors text-left">
-                    I don't know much (leads to guided quiz)
+                    I don't know much (leads to a guided quiz)
                 </button>
                 <button
                     onClick={() => onSelect("medium")}
                     className="border rounded-md px-4 py-3 font-body text-text-primary bg-panel border-hairline hover:border-accent-teal transition-colors text-left">
-                    I could tell you a bit (leads to unguided quiz)
+                    I could tell you a bit (leads to an unguided quiz)
                 </button>
                 <button
                     onClick={() => onSelect("high")}
                     className="border rounded-md px-4 py-3 font-body text-text-primary bg-panel border-hairline hover:border-accent-teal transition-colors text-left">
-                    I know computers (leads to direct search mode)
+                    I know computers (leads to a direct search mode)
                 </button>
             </div>
         </div>
